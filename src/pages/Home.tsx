@@ -14,6 +14,12 @@ const Home: React.FC = () => {
       >
         <div className="absolute inset-0 bg-capone-black opacity-70"></div>
         <div className="relative z-10 p-4 max-w-4xl mx-auto">
+          {/* Logo en haut à droite */}
+          <img
+            src="/logo.webp"
+            alt="Capone’Ink Tattoo Logo"
+            className="absolute top-4 right-4 w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-capone-red shadow-lg"
+          />
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-capone-white drop-shadow-lg animate-fade-in">
             Capone’Ink Tattoo
           </h1>
