@@ -62,11 +62,18 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Custom colors for Capone'Ink Tattoo
+        "capone-black": "#1A1A1A", // Dark background
+        "capone-grey": "#333333", // Anthracite grey for cards/sections
+        "capone-white": "#F5F5F5", // Off-white for text
+        "capone-red": "#8B0000", // Dark red accent
+        "capone-red-hover": "#A00000", // Darker red for hover
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "0.75rem", // Slightly more rounded than default
+        md: "calc(0.75rem - 2px)",
+        sm: "calc(0.75rem - 4px)",
+        xl: "1.25rem", // For sections/cards
       },
       keyframes: {
         "accordion-down": {

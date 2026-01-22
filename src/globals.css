@@ -96,6 +96,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    /* Using custom dark background and off-white foreground */
+    @apply bg-capone-black text-capone-white; 
   }
 }
