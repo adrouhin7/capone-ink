@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
             <a href="https://www.instagram.com/caponeinktattoo" target="_blank" rel="noopener noreferrer" className="text-capone-white hover:text-capone-red transition-colors duration-300">
               <Instagram className="h-8 w-8" />
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="text-capone-white hover:text-capone-red transition-colors duration-300">
+            <a href="https://www.facebook.com/people/CaponeInk-Tattoo/100091298688494/" target="_blank" rel="noopener noreferrer" className="text-capone-white hover:text-capone-red transition-colors duration-300">
               <Facebook className="h-8 w-8" />
             </a>
           </div>
