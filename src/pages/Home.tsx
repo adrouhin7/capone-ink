@@ -10,7 +10,7 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <section
         className="relative h-[70vh] md:h-[80vh] flex items-center justify-center text-center bg-cover bg-center"
-        style={{ backgroundImage: "url('/placeholder.svg')" }} // Placeholder image
+        style={{ backgroundImage: "url('/hero-background.jpg')" }}
       >
         <div className="absolute inset-0 bg-capone-black opacity-70"></div>
         <div className="relative z-10 p-4 max-w-4xl mx-auto">
