@@ -34,12 +34,7 @@ const Header: React.FC = () => {
               {link.name}
             </Link>
           ))}
-          {/* Logo pour la navigation desktop */}
-          <img
-            src="/logo.webp"
-            alt="Capone’Ink Tattoo Logo"
-            className="w-12 h-12 rounded-full object-cover border-2 border-capone-red ml-8"
-          />
+          {/* Le logo a été déplacé hors du Header */}
         </nav>
 
         {/* Mobile Menu */}
@@ -66,12 +61,7 @@ const Header: React.FC = () => {
                     {link.name}
                   </Link>
                 ))}
-                {/* Logo pour la navigation mobile */}
-                <img
-                  src="/logo.webp"
-                  alt="Capone’Ink Tattoo Logo"
-                  className="w-20 h-20 rounded-full object-cover border-2 border-capone-red mt-8 mx-auto"
-                />
+                {/* Le logo a été déplacé hors du Header */}
               </div>
             </SheetContent>
           </Sheet>
