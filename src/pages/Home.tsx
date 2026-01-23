@@ -18,7 +18,7 @@ const Home: React.FC = () => {
           <img
             src="/logo.webp"
             alt="Capone’Ink Tattoo Logo"
-            className="absolute top-[1%] right-8 w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-capone-red shadow-lg"
+            className="absolute top-0 right-4 w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-capone-red shadow-lg"
           />
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-capone-white drop-shadow-lg animate-fade-in">
             Capone’Ink Tattoo
