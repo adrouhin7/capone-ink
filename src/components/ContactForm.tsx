@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -65,6 +67,7 @@ const ContactForm: React.FC = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json', // Ajouté pour une meilleure pratique
           // Si votre fonction Edge nécessite une clé d'API Supabase pour l'appel depuis le client, ajoutez-la ici.
           // Pour les fonctions Edge publiques, ce n'est généralement pas nécessaire.
           // 'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,

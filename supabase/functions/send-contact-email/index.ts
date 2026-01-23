@@ -7,6 +7,16 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
+// --- AJOUT DES LOGS DE DÉBOGAGE ICI ---
+const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
+console.log('DEBUG: RESEND_API_KEY est défini:', !!RESEND_API_KEY); // Affiche true ou false
+const CONTACT_EMAIL_TO = Deno.env.get('CONTACT_EMAIL_TO');
+console.log('DEBUG: CONTACT_EMAIL_TO est défini:', !!CONTACT_EMAIL_TO); // Affiche true ou false
+const CONTACT_EMAIL_FROM = Deno.env.get('CONTACT_EMAIL_FROM');
+console.log('DEBUG: CONTACT_EMAIL_FROM est défini:', !!CONTACT_EMAIL_FROM); // Affiche true ou false
+// --- FIN DES LOGS DE DÉBOGAGE ---
+
+
 serve(async (req) => {
   // Gérer les requêtes OPTIONS (preflight CORS)
   if (req.method === 'OPTIONS') {
@@ -26,10 +36,8 @@ serve(async (req) => {
     }
 
     // Récupérer les secrets depuis Supabase Vault
-    const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
-    const CONTACT_EMAIL_TO = Deno.env.get('CONTACT_EMAIL_TO');
-    const CONTACT_EMAIL_FROM = Deno.env.get('CONTACT_EMAIL_FROM'); // Assurez-vous que cet email est vérifié dans Resend
-
+    // Ces variables sont déjà lues au niveau supérieur, nous les utilisons ici.
+    // La vérification est déplacée ici pour s'assurer qu'elle est dans le bloc try/catch
     if (!RESEND_API_KEY || !CONTACT_EMAIL_TO || !CONTACT_EMAIL_FROM) {
       throw new Error('Clés API Resend ou adresses e-mail de contact manquantes dans les secrets Supabase.');
     }
