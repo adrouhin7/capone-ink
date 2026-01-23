@@ -22,10 +22,36 @@ const Footer: React.FC = () => {
             8 Route de Tressandans, 25680 Rougemont, France
           </p>
           <h3 className="text-2xl font-semibold text-capone-red mb-4 mt-6">Horaires</h3>
-          <p className="flex items-center justify-center md:justify-start text-capone-white">
-            <Clock className="mr-2 h-5 w-5 text-capone-red" />
-            Sur rendez-vous uniquement
-          </p>
+          <div className="text-capone-white text-lg flex flex-col items-center md:items-start">
+            <p className="flex items-center mb-1">
+              <Clock className="mr-2 h-5 w-5 text-capone-red" />
+              Lundi : 09:00 – 19:00
+            </p>
+            <p className="flex items-center mb-1">
+              <Clock className="mr-2 h-5 w-5 text-capone-red" />
+              Mardi : 09:00 – 19:00
+            </p>
+            <p className="flex items-center mb-1">
+              <Clock className="mr-2 h-5 w-5 text-capone-red" />
+              Mercredi : 09:00 – 19:00
+            </p>
+            <p className="flex items-center mb-1">
+              <Clock className="mr-2 h-5 w-5 text-capone-red" />
+              Jeudi : 09:00 – 19:00
+            </p>
+            <p className="flex items-center mb-1">
+              <Clock className="mr-2 h-5 w-5 text-capone-red" />
+              Vendredi : 09:00 – 19:00
+            </p>
+            <p className="flex items-center mb-1">
+              <Clock className="mr-2 h-5 w-5 text-capone-red" />
+              Samedi : 09:00 – 19:00
+            </p>
+            <p className="flex items-center mt-2">
+              <Clock className="mr-2 h-5 w-5 text-capone-red" />
+              Dimanche : Fermé
+            </p>
+          </div>
         </div>
 
         {/* Social Media */}
