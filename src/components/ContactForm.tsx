@@ -20,7 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { showSuccess, showError } from '@/utils/toast';
+import { showSuccess, showError, showLoading, dismissToast } from '@/utils/toast';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Le nom est requis.' }),
@@ -48,13 +48,30 @@ const ContactForm: React.FC = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-    // Simulate API call
-    setTimeout(() => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const toastId = showLoading('Envoi de votre demande...');
+    try {
+      // Replace with your actual Supabase Edge Function URL
+      const response = await fetch('/api/send-contact-email', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Erreur lors de l\'envoi de la demande.');
+      }
+
       showSuccess('Votre demande de devis a été envoyée avec succès !');
       form.reset();
-    }, 1000);
+    } catch (error: any) {
+      showError(`Échec de l'envoi : ${error.message}`);
+    } finally {
+      dismissToast(toastId);
+    }
   };
 
   return (
