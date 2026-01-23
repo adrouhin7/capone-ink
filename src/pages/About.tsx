@@ -59,9 +59,13 @@ const About: React.FC = () => {
             <div className="text-center md:text-left flex flex-col items-center md:items-start">
               <Clock className="h-12 w-12 text-capone-red mb-4" />
               <p className="text-capone-white text-xl font-semibold mb-2">Horaires :</p>
-              <p className="text-capone-white text-lg">Du Lundi au Vendredi</p>
-              <p className="text-capone-white text-lg">Sur rendez-vous uniquement</p>
-              <p className="text-capone-white text-lg mt-2">Contactez-nous pour fixer un créneau.</p>
+              <p className="text-capone-white text-lg">Lundi : 09:00 – 19:00</p>
+              <p className="text-capone-white text-lg">Mardi : 09:00 – 19:00</p>
+              <p className="text-capone-white text-lg">Mercredi : 09:00 – 19:00</p>
+              <p className="text-capone-white text-lg">Jeudi : 09:00 – 19:00</p>
+              <p className="text-capone-white text-lg">Vendredi : 09:00 – 19:00</p>
+              <p className="text-capone-white text-lg">Samedi : 09:00 – 19:00</p>
+              <p className="text-capone-white text-lg mt-2">Dimanche : Fermé</p>
             </div>
           </div>
         </section>
