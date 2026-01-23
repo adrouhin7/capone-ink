@@ -22,6 +22,9 @@ import {
 } from '@/components/ui/select';
 import { showSuccess, showError, showLoading, dismissToast } from '@/utils/toast';
 
+// Importez supabase pour accéder à l'URL de base
+import { supabase } from '@/lib/supabase';
+
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Le nom est requis.' }),
   email: z.string().email({ message: 'Adresse email invalide.' }),
@@ -51,18 +54,27 @@ const ContactForm: React.FC = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const toastId = showLoading('Envoi de votre demande...');
     try {
-      // Replace with your actual Supabase Edge Function URL
-      const response = await fetch('/api/send-contact-email', { 
+      // Construire l'URL de la fonction Edge Supabase
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      if (!supabaseUrl) {
+        throw new Error('VITE_SUPABASE_URL n\'est pas défini dans les variables d\'environnement.');
+      }
+      const edgeFunctionUrl = `${supabaseUrl}/functions/v1/send-contact-email`;
+
+      const response = await fetch(edgeFunctionUrl, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          // Si votre fonction Edge nécessite une clé d'API Supabase pour l'appel depuis le client, ajoutez-la ici.
+          // Pour les fonctions Edge publiques, ce n'est généralement pas nécessaire.
+          // 'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
         },
         body: JSON.stringify(values),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Erreur lors de l\'envoi de la demande.');
+        throw new Error(errorData.error || 'Erreur lors de l\'envoi de la demande.');
       }
 
       showSuccess('Votre demande de devis a été envoyée avec succès !');
