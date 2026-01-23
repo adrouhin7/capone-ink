@@ -13,7 +13,7 @@ const Home: React.FC = () => {
         style={{ backgroundImage: "url('/hero-background.jpg')" }}
       >
         <div className="absolute inset-0 bg-capone-black opacity-70"></div>
-        <div className="relative z-10 px-4 pt-32 pb-4 max-w-4xl mx-auto"> {/* Augmentation du pt- à pt-32 */}
+        <div className="relative z-10 px-4 pt-48 pb-4 max-w-4xl mx-auto"> {/* Augmentation du pt- à pt-48 */}
           {/* Logo en haut à droite */}
           <img
             src="/logo.webp"
