@@ -18,10 +18,9 @@ const Gallery: React.FC = () => {
     const fetchImages = async () => {
       setLoading(true);
       try {
-        const { data, error } = await supabase.storage.from('gallery-images').list('', {
-          limit: 100, // Adjust as needed
+        const { data, error } = await supabase.storage.from('Photo shop').list('', {
+          limit: 100,
           offset: 0,
-          sortBy: { column: 'created_at', order: 'desc' },
         });
 
         if (error) {
@@ -31,7 +30,7 @@ const Gallery: React.FC = () => {
         const fetchedImages: GalleryImage[] = data.map((file) => ({
           id: file.id,
           name: file.name,
-          url: supabase.storage.from('gallery-images').getPublicUrl(file.name).data.publicUrl,
+          url: supabase.storage.from('Photo shop').getPublicUrl(file.name).data.publicUrl,
         }));
         setImages(fetchedImages);
       } catch (error: any) {

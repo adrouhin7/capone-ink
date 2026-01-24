@@ -1,6 +1,7 @@
 import React from 'react';
 import SectionTitle from '@/components/SectionTitle';
 import ContactForm from '@/components/ContactForm';
+import LocationMap from '@/components/LocationMap';
 
 const Contact: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const Contact: React.FC = () => {
           Vous avez une idée de tatouage ? Remplissez le formulaire ci-dessous pour nous décrire votre projet. Nous vous recontacterons rapidement pour discuter des détails et établir un devis personnalisé.
         </p>
         <ContactForm />
+        <LocationMap />
       </div>
     </div>
   );

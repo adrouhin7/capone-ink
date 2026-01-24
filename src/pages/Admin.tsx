@@ -3,6 +3,9 @@ import { supabase } from '@/lib/supabase';
 import AdminLoginForm from '@/components/AdminLoginForm';
 import ImageUploader from '@/components/ImageUploader';
 import AdminGalleryManager from '@/components/AdminGalleryManager';
+import StylesPhairesManager from '@/components/StylesPhairesManager';
+import HeroBackgroundManager from '@/components/HeroBackgroundManager';
+import ArtistPhotoManager from '@/components/ArtistPhotoManager';
 import SectionTitle from '@/components/SectionTitle';
 import { Button } from '@/components/ui/button';
 import { LogOut } from 'lucide-react';
@@ -66,7 +69,19 @@ const Admin: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <ImageUploader onUploadSuccess={handleImageChange} />
-          <AdminGalleryManager key={key} /> {/* Key forces re-render when images change */}
+          <AdminGalleryManager refreshTrigger={key} />
+        </div>
+
+        <div className="mt-12">
+          <StylesPhairesManager />
+        </div>
+
+        <div className="mt-12">
+          <HeroBackgroundManager />
+        </div>
+
+        <div className="mt-12">
+          <ArtistPhotoManager />
         </div>
       </div>
     </div>

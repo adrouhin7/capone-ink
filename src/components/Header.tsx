@@ -6,11 +6,10 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { name: 'Accueil', path: '/' },
-  { name: 'Galerie', path: '/gallery' },
-  { name: 'Tarifs', path: '/pricing' },
-  { name: 'À propos', path: '/about' },
-  { name: 'Contact', path: '/contact' },
+  { name: 'Accueil', path: '#accueil' },
+  { name: 'Galerie', path: '#galerie' },
+  { name: 'À propos', path: '#apropos' },
+  { name: 'Contact', path: '#contact' },
 ];
 
 const Header: React.FC = () => {
@@ -26,13 +25,13 @@ const Header: React.FC = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 items-center">
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.name}
-              to={link.path}
+              href={link.path}
               className="text-lg font-medium hover:text-capone-red transition-colors duration-300"
             >
               {link.name}
-            </Link>
+            </a>
           ))}
           {/* Le logo a été déplacé hors du Header */}
         </nav>
@@ -52,14 +51,14 @@ const Header: React.FC = () => {
                   Capone’Ink
                 </Link>
                 {navLinks.map((link) => (
-                  <Link
+                  <a
                     key={link.name}
-                    to={link.path}
+                    href={link.path}
                     className="text-2xl font-semibold hover:text-capone-red transition-colors duration-300 w-full py-2"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}
-                  </Link>
+                  </a>
                 ))}
                 {/* Le logo a été déplacé hors du Header */}
               </div>

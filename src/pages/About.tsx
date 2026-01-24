@@ -1,28 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SectionTitle from '@/components/SectionTitle';
 import { MapPin, Clock, HeartHandshake, ShieldCheck } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 
 const About: React.FC = () => {
+  const [artistPhotoUrl, setArtistPhotoUrl] = useState<string>('/placeholder.svg');
+
+  useEffect(() => {
+    const fetchArtistPhoto = async () => {
+      try {
+        const { data: files } = await supabase
+          .storage
+          .from('Photo shop')
+          .list('artist-photo', { limit: 1 });
+
+        if (files && files.length > 0) {
+          const url = supabase
+            .storage
+            .from('Photo shop')
+            .getPublicUrl(`artist-photo/${files[0].name}`).data.publicUrl;
+          setArtistPhotoUrl(url);
+        }
+      } catch (error) {
+        console.error('Error fetching artist photo:', error);
+      }
+    };
+
+    fetchArtistPhoto();
+  }, []);
+
   return (
     <div className="bg-capone-black min-h-screen text-capone-white py-16">
       <div className="container mx-auto px-4">
-        <SectionTitle>À Propos de Capone’Ink</SectionTitle>
+        <SectionTitle>À Propos de Capone'Ink</SectionTitle>
 
         {/* Artist Presentation */}
         <section className="mb-16 max-w-4xl mx-auto bg-capone-grey rounded-xl p-8 shadow-xl">
           <h3 className="text-3xl font-bold text-capone-red mb-6 text-center">Notre Artiste</h3>
           <div className="flex flex-col md:flex-row items-center md:space-x-8">
             <img
-              src="/placeholder.svg" // Placeholder for artist's photo
+              src={artistPhotoUrl}
               alt="Portrait de l'artiste tatoueur"
               className="w-48 h-48 rounded-full object-cover mb-6 md:mb-0 border-4 border-capone-red shadow-lg"
             />
             <div className="text-center md:text-left">
               <p className="text-capone-white text-lg leading-relaxed mb-4">
-                Derrière Capone’Ink se trouve [Nom de l'artiste], un tatoueur passionné avec [X] années d'expérience. Spécialisé dans les styles [mentionner les styles, ex: réalisme noir et gris, fineline et old school], [Nom de l'artiste] met son talent et sa créativité au service de vos projets les plus audacieux.
+                Derrière Capone'Ink se trouve Kewin, un tatoueur passionné depuis de nombreuses années. Pour lui, le tatouage n'est pas un travail mais une véritable passion. Spécialisé dans le noir et gris et maîtrisant une large variété de styles définis, il est capable de réaliser aussi bien des pièces détaillées que des créations old school jusqu'au réalisme.
+              </p>
+              <p className="text-capone-white text-lg leading-relaxed mb-4">
+                Capone met son talent et sa créativité au service de projets uniques et personnalisés.
               </p>
               <p className="text-capone-white text-lg leading-relaxed">
-                Chaque trait est exécuté avec précision et dévouement, transformant votre peau en une toile vivante.
+                Chaque trait est exécuté avec précision et dévouement, transformant vos idées en œuvres d'art qui prennent vie sur la peau.
               </p>
             </div>
           </div>

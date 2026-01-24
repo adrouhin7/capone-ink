@@ -35,21 +35,32 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onUploadSuccess }) => {
     try {
       const fileExtension = file.name.split('.').pop();
       const fileName = `${uuidv4()}.${fileExtension}`;
+      console.log('Upload start:', { fileName, fileSize: file.size, fileType: file.type });
       const { data, error } = await supabase.storage
-        .from('gallery-images') // Ensure this bucket exists in Supabase
+        .from('Photo shop') // Ensure this bucket exists in Supabase
         .upload(fileName, file, {
-          cacheControl: '3600',
+          cacheControl: '0',
           upsert: false,
         });
 
+      console.log('Upload response:', { data, error });
+
       if (error) {
+        console.error('Upload error:', error);
         throw error;
       }
 
+      console.log('Upload success!', data);
       showSuccess('Image téléchargée avec succès !');
       setFile(null);
-      onUploadSuccess();
+      
+      // Wait a bit for Supabase to index the file before refreshing
+      setTimeout(() => {
+        console.log('Calling onUploadSuccess after delay');
+        onUploadSuccess();
+      }, 500);
     } catch (error: any) {
+      console.error('Upload exception:', error);
       showError(`Erreur de téléchargement : ${error.message}`);
     } finally {
       dismissToast(toastId);

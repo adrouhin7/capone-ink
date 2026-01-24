@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col items-center md:items-start">
           <h3 className="text-2xl font-semibold text-capone-red mb-4">Suivez-nous</h3>
           <div className="flex space-x-6">
-            <a href="https://www.instagram.com/caponeinktattoo" target="_blank" rel="noopener noreferrer" className="text-capone-white hover:text-capone-red transition-colors duration-300">
+            <a href="https://www.instagram.com/caponeinktattoo/" target="_blank" rel="noopener noreferrer" className="text-capone-white hover:text-capone-red transition-colors duration-300">
               <Instagram className="h-8 w-8" />
             </a>
             <a href="https://www.facebook.com/people/CaponeInk-Tattoo/100091298688494/" target="_blank" rel="noopener noreferrer" className="text-capone-white hover:text-capone-red transition-colors duration-300">
