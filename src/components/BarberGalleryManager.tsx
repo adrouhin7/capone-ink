@@ -107,49 +107,84 @@ const BarberGalleryManager: React.FC<BarberGalleryManagerProps> = ({ refreshTrig
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file || !selectedImagePath) return;
+    if (!file) return;
 
-    setReplacing(true);
-    const toastId = showLoading('Remplacement en cours...');
+    // Si selectedImagePath est défini, c'est un remplacement
+    if (selectedImagePath) {
+      setReplacing(true);
+      const toastId = showLoading('Remplacement en cours...');
 
-    try {
-      const fileExtension = file.name.split('.').pop();
-      const newFileName = `${selectedImagePath.split('.')[0]}.${fileExtension}`;
+      try {
+        const fileExtension = file.name.split('.').pop();
+        const newFileName = `${selectedImagePath.split('.')[0]}.${fileExtension}`;
 
-      // Supprimer l'ancienne image
-      await supabase.storage
-        .from('Photo shop')
-        .remove([`barber-images/${selectedImagePath}`]);
+        // Supprimer l'ancienne image
+        await supabase.storage
+          .from('Photo shop')
+          .remove([`barber-images/${selectedImagePath}`]);
 
-      // Attendre un peu avant d'uploader la nouvelle
-      await new Promise(resolve => setTimeout(resolve, 500));
+        // Attendre un peu avant d'uploader la nouvelle
+        await new Promise(resolve => setTimeout(resolve, 500));
 
-      // Uploader la nouvelle image
-      const { error: uploadError } = await supabase.storage
-        .from('Photo shop')
-        .upload(`barber-images/${newFileName}`, file, {
-          cacheControl: '0',
-          upsert: false,
-        });
+        // Uploader la nouvelle image
+        const { error: uploadError } = await supabase.storage
+          .from('Photo shop')
+          .upload(`barber-images/${newFileName}`, file, {
+            cacheControl: '0',
+            upsert: false,
+          });
 
-      if (uploadError) {
-        throw uploadError;
+        if (uploadError) {
+          throw uploadError;
+        }
+
+        dismissToast(toastId);
+        showSuccess('Image remplacée avec succès !');
+
+        // Attendre avant de rafraîchir
+        await new Promise(resolve => setTimeout(resolve, 500));
+        fetchImages();
+        setSelectedImagePath(null);
+      } catch (error: any) {
+        dismissToast(toastId);
+        showError(`Erreur lors du remplacement : ${error.message}`);
+      } finally {
+        setReplacing(false);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
       }
+    } else {
+      // C'est un ajout de nouvelle image
+      const toastId = showLoading('Upload en cours...');
 
-      dismissToast(toastId);
-      showSuccess('Image remplacée avec succès !');
+      try {
+        const fileName = `${Date.now()}_${file.name}`;
 
-      // Attendre avant de rafraîchir
-      await new Promise(resolve => setTimeout(resolve, 500));
-      fetchImages();
-      setSelectedImagePath(null);
-    } catch (error: any) {
-      dismissToast(toastId);
-      showError(`Erreur lors du remplacement : ${error.message}`);
-    } finally {
-      setReplacing(false);
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
+        const { error: uploadError } = await supabase.storage
+          .from('Photo shop')
+          .upload(`barber-images/${fileName}`, file, {
+            cacheControl: '0',
+            upsert: false,
+          });
+
+        if (uploadError) {
+          throw uploadError;
+        }
+
+        dismissToast(toastId);
+        showSuccess('Image ajoutée avec succès !');
+
+        // Attendre avant de rafraîchir
+        await new Promise(resolve => setTimeout(resolve, 500));
+        fetchImages();
+      } catch (error: any) {
+        dismissToast(toastId);
+        showError(`Erreur lors de l'upload : ${error.message}`);
+      } finally {
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
       }
     }
   };
