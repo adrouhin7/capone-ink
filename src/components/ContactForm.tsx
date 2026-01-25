@@ -214,7 +214,7 @@ const ContactForm: React.FC = () => {
         />
         <Button
           type="submit"
-          className="w-full bg-capone-red hover:bg-capone-red-hover text-capone-white font-bold py-3 px-6 rounded-full text-xl transition-all duration-300 transform hover:scale-105"
+          className="ink-button w-full bg-capone-red hover:bg-capone-red-hover text-capone-white font-bold py-3 px-6 rounded-full text-xl transition-all duration-300 transform hover:scale-105"
         >
           Envoyer la demande
         </Button>
