@@ -1,10 +1,19 @@
-import { useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Environment, useGLTF } from "@react-three/drei";
+import { Suspense } from "react";
+
+function MachineModel() {
+  const { scene } = useGLTF("/models/tattoo-machine.glb");
+  return (
+    <primitive
+      object={scene}
+      scale={1.5}
+      rotation={[0, 0, 0]}
+    />
+  );
+}
 
 export default function TattooMachine() {
-  useEffect(() => {
-    console.log("✅ TattooMachine component mounted!");
-  }, []);
-
   return (
     <div
       style={{
@@ -13,18 +22,17 @@ export default function TattooMachine() {
         left: "40px",
         width: "280px",
         height: "280px",
-        backgroundColor: "rgba(196, 30, 58, 0.2)",
-        border: "3px solid #C41E3A",
-        zIndex: 2,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "#C41E3A",
-        fontSize: "14px",
-        fontWeight: "bold"
+        pointerEvents: "none",
+        zIndex: 2
       }}
     >
-      Test Box - Machine 3D
+      <Canvas camera={{ position: [0, 0, 4] }}>
+        <Suspense fallback={null}>
+          <MachineModel />
+          <Environment preset="studio" />
+          <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+        </Suspense>
+      </Canvas>
     </div>
   );
 }
