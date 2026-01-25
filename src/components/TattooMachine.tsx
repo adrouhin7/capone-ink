@@ -5,6 +5,7 @@ import { Suspense } from "react";
 function MachineModel() {
   try {
     const { scene } = useGLTF("/models/damascus_coil_tattoo_machine__gap_assignment_2.glb");
+    console.log("3D Model loaded successfully:", scene);
     return (
       <primitive
         object={scene}
@@ -14,7 +15,7 @@ function MachineModel() {
     );
   } catch (error) {
     console.error("Failed to load 3D model:", error);
-    return null;
+    return <mesh><boxGeometry /><meshStandardMaterial color="red" /></mesh>;
   }
 }
 
@@ -28,14 +29,20 @@ export default function TattooMachine() {
         width: "280px",
         height: "280px",
         pointerEvents: "none",
-        zIndex: 2
+        zIndex: 2,
+        border: "2px solid rgba(196, 30, 58, 0.3)"
       }}
     >
-      <Canvas camera={{ position: [0, 0, 4] }}>
+      <Canvas camera={{ position: [0, 0, 4] }} gl={{ antialias: true }}>
         <Suspense fallback={null}>
           <MachineModel />
           <Environment preset="studio" />
-          <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+          <OrbitControls 
+            enableZoom={false} 
+            autoRotate 
+            autoRotateSpeed={0.5}
+            enablePan={false}
+          />
         </Suspense>
       </Canvas>
     </div>
