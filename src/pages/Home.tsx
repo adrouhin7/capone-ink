@@ -46,14 +46,6 @@ const Home: React.FC = () => {
   const [barberImages, setBarberImages] = useState<GalleryImage[]>([]);
   const [artistPhotoUrl, setArtistPhotoUrl] = useState<string>('/placeholder.svg');
 
-  useEffect(() => {
-    fetchStylesImages();
-    fetchHeroBackground();
-    fetchGalleryImages();
-    fetchBarberImages();
-    fetchArtistPhoto();
-  }, []);
-
   const fetchStylesImages = async () => {
     try {
       const { data: files, error } = await supabase.storage
@@ -118,8 +110,7 @@ const Home: React.FC = () => {
         throw error;
       }
 
-      // Filtrer les fichiers spécialisés (exclure les dossiers artist-photo, hero-background, styles-phares)
-      const excludedFolders = ['artist-photo', 'hero-background', 'styles-phares'];
+      const excludedFolders = ['artist-photo', 'hero-background', 'styles-phares', 'barber-images'];
       const visibleImages = data.filter((file) =>
         !excludedFolders.includes(file.name)
       );
@@ -177,6 +168,14 @@ const Home: React.FC = () => {
       console.error('Error fetching barber images:', error);
     }
   };
+
+  useEffect(() => {
+    fetchStylesImages();
+    fetchHeroBackground();
+    fetchGalleryImages();
+    fetchBarberImages();
+    fetchArtistPhoto();
+  }, []);
 
   return (
     <div className="bg-capone-black text-capone-white">
