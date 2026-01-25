@@ -1,17 +1,21 @@
-"use client";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment, useGLTF } from "@react-three/drei";
 import { Suspense } from "react";
 
 function MachineModel() {
-  const { scene } = useGLTF("/models/damascus_coil_tattoo_machine__gap_assignment_2.glb");
-  return (
-    <primitive
-      object={scene}
-      scale={1.5}
-      rotation={[0, 0, 0]}
-    />
-  );
+  try {
+    const { scene } = useGLTF("/models/damascus_coil_tattoo_machine__gap_assignment_2.glb");
+    return (
+      <primitive
+        object={scene}
+        scale={1.5}
+        rotation={[0, 0, 0]}
+      />
+    );
+  } catch (error) {
+    console.error("Failed to load 3D model:", error);
+    return null;
+  }
 }
 
 export default function TattooMachine() {
