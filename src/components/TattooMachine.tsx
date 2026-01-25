@@ -18,10 +18,10 @@ export default function TattooMachine() {
     <div
       style={{
         position: "absolute",
-        top: "40px",
-        left: "40px",
-        width: "200px",
-        height: "200px",
+        top: "20px",
+        left: "20px",
+        width: "280px",
+        height: "280px",
         pointerEvents: "none",
         zIndex: 2
       }}
