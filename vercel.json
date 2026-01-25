@@ -1,8 +1,21 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/(?!.*\\.)(.*)",
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "query",
+          "key": "path",
+          "value": "(?!.*\\.)"
+        }
+      ],
+      "destination": "/index.html"
+    },
+    {
+      "source": "/((?!.*\\.).*)",
       "destination": "/index.html"
     }
   ]
