@@ -20,7 +20,9 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images, className }) => {
           <img
             src={image.url}
             alt={image.name}
-            className="w-full h-72 object-cover transition-opacity duration-300 group-hover:opacity-80"
+            className="w-full h-72 object-cover transition-opacity duration-300 group-hover:opacity-80 select-none pointer-events-none"
+            onContextMenu={(e) => e.preventDefault()}
+            draggable={false}
           />
         </div>
       ))}
