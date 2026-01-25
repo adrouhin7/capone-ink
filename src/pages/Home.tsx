@@ -180,7 +180,9 @@ const Home: React.FC = () => {
 
   return (
     <div className="bg-capone-black text-capone-white" style={{ position: "relative" }}>
-      <TattooMachine />
+      <div className="scale-[0.65] max-w-[320px] mx-auto overflow-hidden origin-top">
+        <TattooMachine />
+      </div>
       {/* ACCUEIL SECTION */}
       <section id="accueil" className="min-h-screen">
         {/* Hero Section */}

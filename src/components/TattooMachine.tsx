@@ -7,7 +7,7 @@ function MachineModel() {
   return (
     <primitive
       object={scene}
-      scale={1.5}
+      scale={1}
       rotation={[0, 0, 0]}
     />
   );
@@ -20,8 +20,8 @@ export default function TattooMachine() {
         position: "absolute",
         top: "40px",
         left: "40px",
-        width: "280px",
-        height: "280px",
+        width: "200px",
+        height: "200px",
         pointerEvents: "none",
         zIndex: 2
       }}
