@@ -141,14 +141,28 @@ h3 {
   content: '';
   position: absolute;
   top: -15px;
-  left: 50%;
+  left: 35%;
   transform: translateX(-50%);
   width: 3px;
   height: 20px;
   background: linear-gradient(to bottom, #C41E3A 0%, #C41E3A 60%, transparent 100%);
   border-radius: 50%;
   opacity: 0;
-  animation: redInkDrop 0.9s ease-in forwards;
+  animation: redInkDrop 0.9s ease-in infinite;
+}
+
+.ink-title::after {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 65%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 20px;
+  background: linear-gradient(to bottom, #C41E3A 0%, #C41E3A 60%, transparent 100%);
+  border-radius: 50%;
+  opacity: 0;
+  animation: redInkDrop 0.9s ease-in infinite 0.3s;
 }
 
 @keyframes redInkDrop {
@@ -208,6 +222,21 @@ h3 {
   }
 }
 
+@keyframes blackInkDrop2 {
+  0% {
+    opacity: 1;
+    transform: translateX(60px) translateY(0) scaleY(1);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(60px) translateY(35px) scaleY(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(60px) translateY(55px) scaleY(0.7);
+  }
+}
+
 .ink-button {
   position: relative;
   overflow: hidden;
@@ -235,7 +264,7 @@ h3 {
   content: '';
   position: absolute;
   top: -20px;
-  left: 50%;
+  left: 35%;
   transform: translateX(-50%);
   width: 4px;
   height: 22px;
@@ -243,10 +272,8 @@ h3 {
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
-}
-
-.ink-button:hover::after {
-  animation: blackInkDrop 0.9s ease-in forwards;
+  animation: blackInkDrop 0.9s ease-in infinite, blackInkDrop2 0.9s ease-in infinite 0.45s;
+  box-shadow: 60px 0 0 -4px rgba(15, 15, 15, 0);
 }
 
 /* Ink Reveal - Voile noir qui disparaît vers le haut */
@@ -280,15 +307,19 @@ h3 {
   }
 
   .ink-title::before {
-    animation: redInkDrop 0.7s ease-in forwards;
+    animation: redInkDrop 0.7s ease-in infinite;
+  }
+
+  .ink-title::after {
+    animation: redInkDrop 0.7s ease-in infinite 0.3s;
   }
 
   .ink-button:hover::before {
     animation: inkSpread 0.4s ease-out forwards;
   }
 
-  .ink-button:hover::after {
-    animation: blackInkDrop 0.7s ease-in forwards;
+  .ink-button::after {
+    animation: blackInkDrop 0.7s ease-in infinite, blackInkDrop2 0.7s ease-in infinite 0.35s;
   }
 
   .ink-reveal {
