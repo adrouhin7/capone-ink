@@ -145,13 +145,13 @@ h3 {
   transform: translateX(-50%);
   width: 3px;
   height: 20px;
-  background: linear-gradient(to bottom, #0F0F0F 0%, #0F0F0F 60%, transparent 100%);
+  background: linear-gradient(to bottom, #C41E3A 0%, #C41E3A 60%, transparent 100%);
   border-radius: 50%;
   opacity: 0;
-  animation: blackInkDrop 0.9s ease-in forwards;
+  animation: redInkDrop 0.9s ease-in forwards;
 }
 
-@keyframes blackInkDrop {
+@keyframes redInkDrop {
   0% {
     opacity: 1;
     transform: translateX(-50%) translateY(0) scaleY(1);
@@ -179,6 +179,21 @@ h3 {
 }
 
 @keyframes redInkDrop {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scaleY(1);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(35px) scaleY(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(55px) scaleY(0.7);
+  }
+}
+
+@keyframes blackInkDrop {
   0% {
     opacity: 1;
     transform: translateX(-50%) translateY(0) scaleY(1);
@@ -224,14 +239,14 @@ h3 {
   transform: translateX(-50%);
   width: 4px;
   height: 22px;
-  background: linear-gradient(to bottom, #C41E3A 0%, #C41E3A 60%, transparent 100%);
+  background: linear-gradient(to bottom, #0F0F0F 0%, #0F0F0F 60%, transparent 100%);
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
 }
 
 .ink-button:hover::after {
-  animation: redInkDrop 0.9s ease-in forwards;
+  animation: blackInkDrop 0.9s ease-in forwards;
 }
 
 /* Ink Reveal - Voile noir qui disparaît vers le haut */
@@ -265,7 +280,7 @@ h3 {
   }
 
   .ink-title::before {
-    animation: blackInkDrop 0.7s ease-in forwards;
+    animation: redInkDrop 0.7s ease-in forwards;
   }
 
   .ink-button:hover::before {
@@ -273,7 +288,7 @@ h3 {
   }
 
   .ink-button:hover::after {
-    animation: redInkDrop 0.7s ease-in forwards;
+    animation: blackInkDrop 0.7s ease-in forwards;
   }
 
   .ink-reveal {
