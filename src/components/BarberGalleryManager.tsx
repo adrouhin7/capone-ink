@@ -159,7 +159,11 @@ const BarberGalleryManager: React.FC<BarberGalleryManagerProps> = ({ refreshTrig
       const toastId = showLoading('Upload en cours...');
 
       try {
-        const fileName = `${Date.now()}_${file.name}`;
+        // Nettoyer le nom du fichier (supprimer caractères spéciaux)
+        const cleanFileName = file.name
+          .replace(/[^a-zA-Z0-9.-]/g, '_')
+          .toLowerCase();
+        const fileName = `${Date.now()}_${cleanFileName}`;
 
         const { error: uploadError } = await supabase.storage
           .from('Photo shop')
