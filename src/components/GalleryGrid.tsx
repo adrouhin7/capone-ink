@@ -22,9 +22,6 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images, className }) => {
             alt={image.name}
             className="w-full h-72 object-cover transition-opacity duration-300 group-hover:opacity-80"
           />
-          <div className="absolute inset-0 bg-capone-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <p className="text-capone-white text-lg font-semibold text-center p-4">{image.name}</p>
-          </div>
         </div>
       ))}
     </div>
