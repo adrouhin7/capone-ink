@@ -164,11 +164,20 @@ const BarberGalleryManager: React.FC<BarberGalleryManagerProps> = ({ refreshTrig
 
   return (
     <div className="mt-12 p-8 bg-capone-grey rounded-lg">
-      <h2 className="text-2xl font-bold text-capone-red mb-6">Galerie Barber gang</h2>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold text-capone-red">Galerie Barber gang</h2>
+        <Button
+          onClick={() => fileInputRef.current?.click()}
+          disabled={replacing}
+          className="bg-capone-red hover:bg-capone-red-hover text-capone-white font-bold py-2 px-6 rounded-full transition-all"
+        >
+          + Ajouter une image
+        </Button>
+      </div>
 
       {images.length === 0 ? (
         <p className="text-capone-white text-center py-8">
-          Aucune image de barber pour le moment. Ajoutez-en via le gestionnaire d'images.
+          Aucune image de barber pour le moment. Ajoutez-en via le bouton ci-dessus.
         </p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
