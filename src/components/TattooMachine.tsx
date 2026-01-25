@@ -1,22 +1,53 @@
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment, useGLTF } from "@react-three/drei";
-import { Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
+
+const Canvas = React.lazy(() => import("@react-three/fiber").then(m => ({ default: m.Canvas })));
+const OrbitControls = React.lazy(() => import("@react-three/drei").then(m => ({ default: m.OrbitControls })));
+const Environment = React.lazy(() => import("@react-three/drei").then(m => ({ default: m.Environment })));
+const useGLTF = React.lazy(() => import("@react-three/drei").then(m => ({ default: m.useGLTF })));
 
 function MachineModel() {
-  try {
-    const { scene } = useGLTF("/models/damascus_coil_tattoo_machine__gap_assignment_2.glb");
-    console.log("3D Model loaded successfully:", scene);
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    console.log("TattooMachine: Attempting to load model...");
+    fetch("/models/damascus_coil_tattoo_machine__gap_assignment_2.glb")
+      .then(res => {
+        console.log("Model fetch status:", res.status);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.blob();
+      })
+      .then(() => {
+        console.log("Model file exists!");
+        setLoaded(true);
+      })
+      .catch(err => {
+        console.error("Model loading error:", err);
+        setError(err.message);
+      });
+  }, []);
+
+  if (error) {
     return (
-      <primitive
-        object={scene}
-        scale={1.5}
-        rotation={[0, 0, 0]}
-      />
+      <div style={{ color: "#C41E3A", fontSize: "12px", padding: "10px" }}>
+        ❌ Model Error: {error}
+      </div>
     );
-  } catch (error) {
-    console.error("Failed to load 3D model:", error);
-    return <mesh><boxGeometry /><meshStandardMaterial color="red" /></mesh>;
   }
+
+  if (!loaded) {
+    return (
+      <div style={{ color: "#C41E3A", fontSize: "12px", padding: "10px" }}>
+        ⏳ Loading...
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ color: "#C41E3A", fontSize: "12px", padding: "10px" }}>
+      ✅ Model Loaded
+    </div>
+  );
 }
 
 export default function TattooMachine() {
@@ -30,21 +61,17 @@ export default function TattooMachine() {
         height: "280px",
         pointerEvents: "none",
         zIndex: 2,
-        border: "2px solid rgba(196, 30, 58, 0.3)"
+        border: "2px solid rgba(196, 30, 58, 0.5)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "14px",
+        color: "#C41E3A"
       }}
     >
-      <Canvas camera={{ position: [0, 0, 4] }} gl={{ antialias: true }}>
-        <Suspense fallback={null}>
-          <MachineModel />
-          <Environment preset="studio" />
-          <OrbitControls 
-            enableZoom={false} 
-            autoRotate 
-            autoRotateSpeed={0.5}
-            enablePan={false}
-          />
-        </Suspense>
-      </Canvas>
+      <Suspense fallback={<div>Loading...</div>}>
+        <MachineModel />
+      </Suspense>
     </div>
   );
 }
