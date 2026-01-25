@@ -65,18 +65,6 @@ const Footer: React.FC = () => {
               <Facebook className="h-8 w-8" />
             </a>
           </div>
-          <div className="mt-8">
-            <p className="text-sm text-gray-500">
-              <a
-                href="https://www.dyad.sh/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-gray-300"
-              >
-                Made with Dyad
-              </a>
-            </p>
-          </div>
         </div>
       </div>
       <div className="text-center text-sm text-gray-500 mt-12">
