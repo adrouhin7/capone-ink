@@ -153,7 +153,8 @@ const Home: React.FC = () => {
       }
     } catch (error) {
       console.error('Error fetching artist photo:', error);
-    
+    }
+  };
 
   const fetchBarberImages = async () => {
     try {
@@ -175,7 +176,6 @@ const Home: React.FC = () => {
     } catch (error) {
       console.error('Error fetching barber images:', error);
     }
-  };}
   };
 
   return (
