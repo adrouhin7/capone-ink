@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { name: 'Accueil', path: '#accueil' },
   { name: 'Galerie', path: '#galerie' },
+  { name: 'Barber gang', path: '#barber-gang' },
   { name: 'À propos', path: '#apropos' },
   { name: 'Contact', path: '#contact' },
 ];

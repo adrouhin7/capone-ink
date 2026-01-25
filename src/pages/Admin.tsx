@@ -6,6 +6,7 @@ import AdminGalleryManager from '@/components/AdminGalleryManager';
 import StylesPhairesManager from '@/components/StylesPhairesManager';
 import HeroBackgroundManager from '@/components/HeroBackgroundManager';
 import ArtistPhotoManager from '@/components/ArtistPhotoManager';
+import BarberGalleryManager from '@/components/BarberGalleryManager';
 import SectionTitle from '@/components/SectionTitle';
 import { Button } from '@/components/ui/button';
 import { LogOut } from 'lucide-react';
@@ -82,6 +83,10 @@ const Admin: React.FC = () => {
 
         <div className="mt-12">
           <ArtistPhotoManager />
+        </div>
+
+        <div className="mt-12">
+          <BarberGalleryManager />
         </div>
       </div>
     </div>
