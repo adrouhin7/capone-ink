@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import SectionTitle from '@/components/SectionTitle';
 import CardTattooStyle from '@/components/CardTattooStyle';
 import GalleryGrid from '@/components/GalleryGrid';
+import TattooMachine from '@/components/TattooMachine';
 import { MapPin, Clock, HeartHandshake, ShieldCheck } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
 import LocationMap from '@/components/LocationMap';
@@ -178,7 +179,8 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-capone-black text-capone-white">
+    <div className="bg-capone-black text-capone-white" style={{ position: "relative" }}>
+      <TattooMachine />
       {/* ACCUEIL SECTION */}
       <section id="accueil" className="min-h-screen">
         {/* Hero Section */}
