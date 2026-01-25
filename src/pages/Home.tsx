@@ -260,32 +260,6 @@ const Home: React.FC = () => {
       </section>
 
       {/* BARBER GANG SECTION */}
-      <section id="barber-gang" className="min-h-screen bg-capone-black py-16">
-        <div className="container mx-auto px-4">
-          <SectionTitle>Barber gang By NaNa</SectionTitle>
-          <p className="text-center text-lg md:text-xl text-capone-white mb-12 max-w-3xl mx-auto">
-            Retrouvez aussi notre barber présente au shop Capone'Ink. Coiffure, rasage et entretien avec passion et professionnalisme.
-          </p>
-          {barberImages.length === 0 ? (
-            <p className="text-center text-capone-white text-lg">Aucune image à afficher pour le moment.</p>
-          ) : (
-            <>
-              <GalleryGrid images={barberImages} />
-              <div className="flex justify-center mt-8">
-                <a
-                  href="https://www.planity.com/barber-gang-by-nana-25680-rougemont"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-capone-red hover:bg-capone-red-hover text-capone-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105"
-                >
-                  Prendre RDV
-                </a>
-              </div>
-            </>
-          )}
-        </div>
-      </section>
-
       {/* À PROPOS SECTION */}
       <section id="apropos" className="min-h-screen py-16">
         <div className="container mx-auto px-4">
@@ -367,6 +341,33 @@ const Home: React.FC = () => {
           </p>
           <ContactForm />
           <LocationMap />
+        </div>
+      </section>
+
+      {/* BARBER GANG SECTION */}
+      <section id="barber-gang" className="min-h-screen bg-capone-black py-16">
+        <div className="container mx-auto px-4">
+          <SectionTitle>Barber gang By NaNa</SectionTitle>
+          <p className="text-center text-lg md:text-xl text-capone-white mb-12 max-w-3xl mx-auto">
+            Retrouvez aussi notre barber présente au shop Capone'Ink. Coiffure, rasage et entretien avec passion et professionnalisme.
+          </p>
+          {barberImages.length === 0 ? (
+            <p className="text-center text-capone-white text-lg">Aucune image à afficher pour le moment.</p>
+          ) : (
+            <>
+              <GalleryGrid images={barberImages} />
+              <div className="flex justify-center mt-8">
+                <a
+                  href="https://www.planity.com/barber-gang-by-nana-25680-rougemont"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-capone-red hover:bg-capone-red-hover text-capone-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105"
+                >
+                  Prendre RDV
+                </a>
+              </div>
+            </>
+          )}
         </div>
       </section>
     </div>
