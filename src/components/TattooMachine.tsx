@@ -1,56 +1,10 @@
-import React, { Suspense, useEffect, useState } from "react";
-
-const Canvas = React.lazy(() => import("@react-three/fiber").then(m => ({ default: m.Canvas })));
-const OrbitControls = React.lazy(() => import("@react-three/drei").then(m => ({ default: m.OrbitControls })));
-const Environment = React.lazy(() => import("@react-three/drei").then(m => ({ default: m.Environment })));
-const useGLTF = React.lazy(() => import("@react-three/drei").then(m => ({ default: m.useGLTF })));
-
-function MachineModel() {
-  const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    console.log("TattooMachine: Attempting to load model...");
-    fetch("/models/damascus_coil_tattoo_machine__gap_assignment_2.glb")
-      .then(res => {
-        console.log("Model fetch status:", res.status);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.blob();
-      })
-      .then(() => {
-        console.log("Model file exists!");
-        setLoaded(true);
-      })
-      .catch(err => {
-        console.error("Model loading error:", err);
-        setError(err.message);
-      });
-  }, []);
-
-  if (error) {
-    return (
-      <div style={{ color: "#C41E3A", fontSize: "12px", padding: "10px" }}>
-        ❌ Model Error: {error}
-      </div>
-    );
-  }
-
-  if (!loaded) {
-    return (
-      <div style={{ color: "#C41E3A", fontSize: "12px", padding: "10px" }}>
-        ⏳ Loading...
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ color: "#C41E3A", fontSize: "12px", padding: "10px" }}>
-      ✅ Model Loaded
-    </div>
-  );
-}
+import { useEffect } from "react";
 
 export default function TattooMachine() {
+  useEffect(() => {
+    console.log("✅ TattooMachine component mounted!");
+  }, []);
+
   return (
     <div
       style={{
@@ -59,19 +13,18 @@ export default function TattooMachine() {
         left: "40px",
         width: "280px",
         height: "280px",
-        pointerEvents: "none",
+        backgroundColor: "rgba(196, 30, 58, 0.2)",
+        border: "3px solid #C41E3A",
         zIndex: 2,
-        border: "2px solid rgba(196, 30, 58, 0.5)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        color: "#C41E3A",
         fontSize: "14px",
-        color: "#C41E3A"
+        fontWeight: "bold"
       }}
     >
-      <Suspense fallback={<div>Loading...</div>}>
-        <MachineModel />
-      </Suspense>
+      Test Box - Machine 3D
     </div>
   );
 }
