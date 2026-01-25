@@ -194,17 +194,17 @@ const Home: React.FC = () => {
               alt="Capone'Ink Tattoo Logo"
               className="absolute top-0 right-4 w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-capone-red shadow-lg"
             />
-            <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-capone-white drop-shadow-lg animate-fade-in">
+            <h1 className="ink-title text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-capone-white drop-shadow-lg animate-fade-in">
               Capone'Ink Tattoo
             </h1>
             <p className="text-xl md:text-2xl text-capone-white mb-10 animate-fade-in delay-200">
               L'art du tatouage, une encre, une histoire.
             </p>
             <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 animate-fade-in delay-400">
-              <Button asChild className="bg-capone-red hover:bg-capone-red-hover text-capone-white font-bold py-3 px-8 rounded-full text-xl transition-all duration-300 transform hover:scale-105">
+              <Button asChild className="ink-button bg-capone-red hover:bg-capone-red-hover text-capone-white font-bold py-3 px-8 rounded-full text-xl transition-all duration-300 transform hover:scale-105">
                 <a href="#galerie">Voir la galerie</a>
               </Button>
-              <Button asChild variant="outline" className="border-capone-red text-capone-red hover:bg-capone-red hover:text-capone-white font-bold py-3 px-8 rounded-full text-xl transition-all duration-300 transform hover:scale-105">
+              <Button asChild variant="outline" className="ink-button border-capone-red text-capone-red hover:bg-capone-red hover:text-capone-white font-bold py-3 px-8 rounded-full text-xl transition-all duration-300 transform hover:scale-105">
                 <a href="#contact">Demander un devis</a>
               </Button>
             </div>
@@ -361,7 +361,7 @@ const Home: React.FC = () => {
               href="https://www.planity.com/barber-gang-by-nana-25680-rougemont"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-capone-red hover:bg-capone-red-hover text-capone-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105"
+              className="ink-button bg-capone-red hover:bg-capone-red-hover text-capone-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105"
             >
               Prendre RDV
             </a>

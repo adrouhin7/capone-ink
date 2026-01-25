@@ -112,3 +112,125 @@ h3 {
     @apply bg-capone-black text-capone-white; 
   }
 }
+
+/* ===== INK FX ANIMATIONS ===== */
+
+/* Ink Title - Encre qui coule sur les titres */
+@keyframes inkTitleFlow {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+    clip-path: inset(0 0 100% 0);
+  }
+  50% {
+    clip-path: inset(0 0 50% 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.ink-title {
+  animation: inkTitleFlow 0.8s ease-out forwards;
+  position: relative;
+}
+
+.ink-title::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 15px;
+  background: linear-gradient(to bottom, #C41E3A, transparent);
+  opacity: 0;
+  animation: inkDrop 0.8s ease-out forwards;
+}
+
+@keyframes inkDrop {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+}
+
+/* Ink Button - Tache d'encre qui se diffuse */
+@keyframes inkSpread {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.ink-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.ink-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: #C41E3A;
+  pointer-events: none;
+  transition: none;
+}
+
+.ink-button:hover::before {
+  animation: inkSpread 0.6s ease-out forwards;
+}
+
+/* Ink Reveal - Voile noir qui disparaît vers le haut */
+@keyframes inkReveal {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.ink-reveal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0F0F0F;
+  z-index: 9999;
+  animation: inkReveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  pointer-events: none;
+}
+
+/* Support mobile */
+@media (max-width: 768px) {
+  .ink-title {
+    animation: inkTitleFlow 0.6s ease-out forwards;
+  }
+
+  .ink-button:hover::before {
+    animation: inkSpread 0.4s ease-out forwards;
+  }
+
+  .ink-reveal {
+    animation: inkReveal 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+}
