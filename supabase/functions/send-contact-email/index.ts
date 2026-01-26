@@ -98,8 +98,8 @@ serve(async (req) => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: CONTACT_EMAIL_FROM,
-        to: CONTACT_EMAIL_TO,
+        from: Deno.env.get("CONTACT_EMAIL_FROM"),
+        to: Deno.env.get("CONTACT_EMAIL_TO"),
         subject: emailSubject,
         html: emailHtml,
       }),
