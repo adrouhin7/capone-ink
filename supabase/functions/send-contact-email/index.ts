@@ -2,20 +2,10 @@ import { serve } from 'https://deno.land/std@0.177.0/http/server.ts';
 
 // Configuration CORS pour permettre les requêtes depuis votre frontend
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*', // Remplacez par l'URL de votre frontend en production pour plus de sécurité
+  'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
-
-// --- AJOUT DES LOGS DE DÉBOGAGE ICI ---
-const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
-console.log('DEBUG: RESEND_API_KEY est défini:', !!RESEND_API_KEY); // Affiche true ou false
-const CONTACT_EMAIL_TO = Deno.env.get('CONTACT_EMAIL_TO');
-console.log('DEBUG: CONTACT_EMAIL_TO est défini:', !!CONTACT_EMAIL_TO); // Affiche true ou false
-const CONTACT_EMAIL_FROM = Deno.env.get('CONTACT_EMAIL_FROM');
-console.log('DEBUG: CONTACT_EMAIL_FROM est défini:', !!CONTACT_EMAIL_FROM); // Affiche true ou false
-// --- FIN DES LOGS DE DÉBOGAGE ---
-
 
 serve(async (req) => {
   // Gérer les requêtes OPTIONS (preflight CORS)
@@ -36,9 +26,12 @@ serve(async (req) => {
     }
 
     // Récupérer les secrets depuis Supabase Vault
-    // Ces variables sont déjà lues au niveau supérieur, nous les utilisons ici.
-    // La vérification est déplacée ici pour s'assurer qu'elle est dans le bloc try/catch
-    if (!RESEND_API_KEY || !CONTACT_EMAIL_TO || !CONTACT_EMAIL_FROM) {
+    // Appeler directement Deno.env.get() pour obtenir les valeurs fraîches du Vault
+    const resendApiKey = Deno.env.get('RESEND_API_KEY');
+    const contactEmailTo = Deno.env.get('CONTACT_EMAIL_TO');
+    const contactEmailFrom = Deno.env.get('CONTACT_EMAIL_FROM');
+    
+    if (!resendApiKey || !contactEmailTo || !contactEmailFrom) {
       throw new Error('Clés API Resend ou adresses e-mail de contact manquantes dans les secrets Supabase.');
     }
 
@@ -95,11 +88,11 @@ serve(async (req) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${RESEND_API_KEY}`,
+        Authorization: `Bearer ${resendApiKey}`,
       },
       body: JSON.stringify({
-        from: Deno.env.get("CONTACT_EMAIL_FROM"),
-        to: Deno.env.get("CONTACT_EMAIL_TO"),
+        from: contactEmailFrom,
+        to: contactEmailTo,
         subject: emailSubject,
         html: emailHtml,
       }),
