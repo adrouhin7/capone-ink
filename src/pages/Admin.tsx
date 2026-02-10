@@ -7,6 +7,7 @@ import StylesPhairesManager from '@/components/StylesPhairesManager';
 import HeroBackgroundManager from '@/components/HeroBackgroundManager';
 import ArtistPhotoManager from '@/components/ArtistPhotoManager';
 import BarberGalleryManager from '@/components/BarberGalleryManager';
+import BusinessHoursManager from '@/components/BusinessHoursManager';
 import SectionTitle from '@/components/SectionTitle';
 import { Button } from '@/components/ui/button';
 import { LogOut } from 'lucide-react';
@@ -14,7 +15,7 @@ import { showSuccess, showError } from '@/utils/toast';
 
 const Admin: React.FC = () => {
   const [session, setSession] = useState<any>(null);
-  const [key, setKey] = useState(0); // Used to force re-render of AdminGalleryManager
+  const [key, setKey] = useState(0);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -87,6 +88,10 @@ const Admin: React.FC = () => {
 
         <div className="mt-12">
           <BarberGalleryManager />
+        </div>
+
+        <div className="mt-12">
+          <BusinessHoursManager />
         </div>
       </div>
     </div>

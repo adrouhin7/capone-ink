@@ -22,6 +22,15 @@ interface GalleryImage {
   url: string;
 }
 
+interface ScheduleDay {
+  id: string;
+  day: string;
+  opening_time: string;
+  closing_time: string;
+  is_closed: boolean;
+  order: number;
+}
+
 const Home: React.FC = () => {
   const [styles, setStyles] = useState<StyleData[]>([
     {
@@ -46,6 +55,7 @@ const Home: React.FC = () => {
   const [galleryLoading, setGalleryLoading] = useState(true);
   const [barberImages, setBarberImages] = useState<GalleryImage[]>([]);
   const [artistPhotoUrl, setArtistPhotoUrl] = useState<string>('/placeholder.svg');
+  const [schedule, setSchedule] = useState<ScheduleDay[]>([]);
 
   const fetchStylesImages = async () => {
     try {
@@ -170,12 +180,47 @@ const Home: React.FC = () => {
     }
   };
 
+  const fetchSchedule = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('business_hours')
+        .select('*')
+        .order('order', { ascending: true });
+
+      if (error) {
+        console.log('Schedule table not found, using defaults');
+        initializeDefaultSchedule();
+      } else if (data && data.length > 0) {
+        setSchedule(data);
+      } else {
+        initializeDefaultSchedule();
+      }
+    } catch (error) {
+      console.error('Error fetching schedule:', error);
+      initializeDefaultSchedule();
+    }
+  };
+
+  const initializeDefaultSchedule = () => {
+    const days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+    const defaultSchedule: ScheduleDay[] = days.map((day, index) => ({
+      id: `${index}`,
+      day,
+      opening_time: '09:00',
+      closing_time: '19:00',
+      is_closed: day === 'Dimanche',
+      order: index,
+    }));
+    setSchedule(defaultSchedule);
+  };
+
   useEffect(() => {
     fetchStylesImages();
     fetchHeroBackground();
     fetchGalleryImages();
     fetchBarberImages();
     fetchArtistPhoto();
+    fetchSchedule();
   }, []);
 
   return (
@@ -323,13 +368,23 @@ const Home: React.FC = () => {
               <div className="text-center md:text-left flex flex-col items-center md:items-start">
                 <Clock className="h-12 w-12 text-capone-red mb-4" />
                 <p className="text-capone-white text-xl font-semibold mb-2">Horaires :</p>
-                <p className="text-capone-white text-lg">Lundi : 09:00 – 19:00</p>
-                <p className="text-capone-white text-lg">Mardi : 09:00 – 19:00</p>
-                <p className="text-capone-white text-lg">Mercredi : 09:00 – 19:00</p>
-                <p className="text-capone-white text-lg">Jeudi : 09:00 – 19:00</p>
-                <p className="text-capone-white text-lg">Vendredi : 09:00 – 19:00</p>
-                <p className="text-capone-white text-lg">Samedi : 09:00 – 19:00</p>
-                <p className="text-capone-white text-lg mt-2">Dimanche : Fermé</p>
+                {schedule.length > 0 ? (
+                  schedule.map((day) => (
+                    <p key={day.order} className="text-capone-white text-lg">
+                      {day.day} : {day.is_closed ? 'Fermé' : `${day.opening_time} – ${day.closing_time}`}
+                    </p>
+                  ))
+                ) : (
+                  <>
+                    <p className="text-capone-white text-lg">Lundi : 09:00 – 19:00</p>
+                    <p className="text-capone-white text-lg">Mardi : 09:00 – 19:00</p>
+                    <p className="text-capone-white text-lg">Mercredi : 09:00 – 19:00</p>
+                    <p className="text-capone-white text-lg">Jeudi : 09:00 – 19:00</p>
+                    <p className="text-capone-white text-lg">Vendredi : 09:00 – 19:00</p>
+                    <p className="text-capone-white text-lg">Samedi : 09:00 – 19:00</p>
+                    <p className="text-capone-white text-lg mt-2">Dimanche : Fermé</p>
+                  </>
+                )}
               </div>
             </div>
           </div>

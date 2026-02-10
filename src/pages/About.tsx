@@ -3,8 +3,18 @@ import SectionTitle from '@/components/SectionTitle';
 import { MapPin, Clock, HeartHandshake, ShieldCheck } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
+interface ScheduleDay {
+  id: string;
+  day: string;
+  opening_time: string;
+  closing_time: string;
+  is_closed: boolean;
+  order: number;
+}
+
 const About: React.FC = () => {
   const [artistPhotoUrl, setArtistPhotoUrl] = useState<string>('/placeholder.svg');
+  const [schedule, setSchedule] = useState<ScheduleDay[]>([]);
 
   useEffect(() => {
     const fetchArtistPhoto = async () => {
@@ -28,6 +38,44 @@ const About: React.FC = () => {
 
     fetchArtistPhoto();
   }, []);
+
+  useEffect(() => {
+    fetchSchedule();
+  }, []);
+
+  const fetchSchedule = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('business_hours')
+        .select('*')
+        .order('order', { ascending: true });
+
+      if (error) {
+        console.log('Schedule table not found, using defaults');
+        initializeDefaultSchedule();
+      } else if (data && data.length > 0) {
+        setSchedule(data);
+      } else {
+        initializeDefaultSchedule();
+      }
+    } catch (error) {
+      console.error('Error fetching schedule:', error);
+      initializeDefaultSchedule();
+    }
+  };
+
+  const initializeDefaultSchedule = () => {
+    const days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+    const defaultSchedule: ScheduleDay[] = days.map((day, index) => ({
+      id: `${index}`,
+      day,
+      opening_time: '09:00',
+      closing_time: '19:00',
+      is_closed: day === 'Dimanche',
+      order: index,
+    }));
+    setSchedule(defaultSchedule);
+  };
 
   return (
     <div className="bg-capone-black min-h-screen text-capone-white py-16">
@@ -88,13 +136,23 @@ const About: React.FC = () => {
             <div className="text-center md:text-left flex flex-col items-center md:items-start">
               <Clock className="h-12 w-12 text-capone-red mb-4" />
               <p className="text-capone-white text-xl font-semibold mb-2">Horaires :</p>
-              <p className="text-capone-white text-lg">Lundi : 09:00 – 19:00</p>
-              <p className="text-capone-white text-lg">Mardi : 09:00 – 19:00</p>
-              <p className="text-capone-white text-lg">Mercredi : 09:00 – 19:00</p>
-              <p className="text-capone-white text-lg">Jeudi : 09:00 – 19:00</p>
-              <p className="text-capone-white text-lg">Vendredi : 09:00 – 19:00</p>
-              <p className="text-capone-white text-lg">Samedi : 09:00 – 19:00</p>
-              <p className="text-capone-white text-lg mt-2">Dimanche : Fermé</p>
+              {schedule.length > 0 ? (
+                schedule.map((day) => (
+                  <p key={day.order} className="text-capone-white text-lg">
+                    {day.day} : {day.is_closed ? 'Fermé' : `${day.opening_time} – ${day.closing_time}`}
+                  </p>
+                ))
+              ) : (
+                <>
+                  <p className="text-capone-white text-lg">Lundi : 09:00 – 19:00</p>
+                  <p className="text-capone-white text-lg">Mardi : 09:00 – 19:00</p>
+                  <p className="text-capone-white text-lg">Mercredi : 09:00 – 19:00</p>
+                  <p className="text-capone-white text-lg">Jeudi : 09:00 – 19:00</p>
+                  <p className="text-capone-white text-lg">Vendredi : 09:00 – 19:00</p>
+                  <p className="text-capone-white text-lg">Samedi : 09:00 – 19:00</p>
+                  <p className="text-capone-white text-lg mt-2">Dimanche : Fermé</p>
+                </>
+              )}
             </div>
           </div>
         </section>

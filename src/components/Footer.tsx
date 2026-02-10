@@ -1,8 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { supabase } from '@/lib/supabase';
 import { MapPin, Clock, Instagram, Facebook } from 'lucide-react';
 
+interface ScheduleDay {
+  id: string;
+  day: string;
+  opening_time: string;
+  closing_time: string;
+  is_closed: boolean;
+  order: number;
+}
+
 const Footer: React.FC = () => {
+  const [schedule, setSchedule] = useState<ScheduleDay[]>([]);
+
+  useEffect(() => {
+    fetchSchedule();
+  }, []);
+
+  const fetchSchedule = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('business_hours')
+        .select('*')
+        .order('order', { ascending: true });
+
+      if (error) {
+        console.log('Schedule table not found, using defaults');
+        initializeDefaultSchedule();
+      } else if (data && data.length > 0) {
+        setSchedule(data);
+      } else {
+        initializeDefaultSchedule();
+      }
+    } catch (error) {
+      console.error('Error fetching schedule:', error);
+      initializeDefaultSchedule();
+    }
+  };
+
+  const initializeDefaultSchedule = () => {
+    const days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+    const defaultSchedule: ScheduleDay[] = days.map((day, index) => ({
+      id: `${index}`,
+      day,
+      opening_time: '09:00',
+      closing_time: '19:00',
+      is_closed: day === 'Dimanche',
+      order: index,
+    }));
+    setSchedule(defaultSchedule);
+  };
   return (
     <footer className="bg-capone-black text-capone-white py-12 mt-16 border-t border-capone-grey">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
@@ -23,34 +72,45 @@ const Footer: React.FC = () => {
           </p>
           <h3 className="text-2xl font-semibold text-capone-red mb-4 mt-6">Horaires</h3>
           <div className="text-capone-white text-lg flex flex-col items-center md:items-start">
-            <p className="flex items-center mb-1">
-              <Clock className="mr-2 h-5 w-5 text-capone-red" />
-              Lundi : 09:00 – 19:00
-            </p>
-            <p className="flex items-center mb-1">
-              <Clock className="mr-2 h-5 w-5 text-capone-red" />
-              Mardi : 09:00 – 19:00
-            </p>
-            <p className="flex items-center mb-1">
-              <Clock className="mr-2 h-5 w-5 text-capone-red" />
-              Mercredi : 09:00 – 19:00
-            </p>
-            <p className="flex items-center mb-1">
-              <Clock className="mr-2 h-5 w-5 text-capone-red" />
-              Jeudi : 09:00 – 19:00
-            </p>
-            <p className="flex items-center mb-1">
-              <Clock className="mr-2 h-5 w-5 text-capone-red" />
-              Vendredi : 09:00 – 19:00
-            </p>
-            <p className="flex items-center mb-1">
-              <Clock className="mr-2 h-5 w-5 text-capone-red" />
-              Samedi : 09:00 – 19:00
-            </p>
-            <p className="flex items-center mt-2">
-              <Clock className="mr-2 h-5 w-5 text-capone-red" />
-              Dimanche : Fermé
-            </p>
+            {schedule.length > 0 ? (
+              schedule.map((day) => (
+                <p key={day.order} className="flex items-center mb-1">
+                  <Clock className="mr-2 h-5 w-5 text-capone-red" />
+                  {day.day} : {day.is_closed ? 'Fermé' : `${day.opening_time} – ${day.closing_time}`}
+                </p>
+              ))
+            ) : (
+              <>
+                <p className="flex items-center mb-1">
+                  <Clock className="mr-2 h-5 w-5 text-capone-red" />
+                  Lundi : 09:00 – 19:00
+                </p>
+                <p className="flex items-center mb-1">
+                  <Clock className="mr-2 h-5 w-5 text-capone-red" />
+                  Mardi : 09:00 – 19:00
+                </p>
+                <p className="flex items-center mb-1">
+                  <Clock className="mr-2 h-5 w-5 text-capone-red" />
+                  Mercredi : 09:00 – 19:00
+                </p>
+                <p className="flex items-center mb-1">
+                  <Clock className="mr-2 h-5 w-5 text-capone-red" />
+                  Jeudi : 09:00 – 19:00
+                </p>
+                <p className="flex items-center mb-1">
+                  <Clock className="mr-2 h-5 w-5 text-capone-red" />
+                  Vendredi : 09:00 – 19:00
+                </p>
+                <p className="flex items-center mb-1">
+                  <Clock className="mr-2 h-5 w-5 text-capone-red" />
+                  Samedi : 09:00 – 19:00
+                </p>
+                <p className="flex items-center mt-2">
+                  <Clock className="mr-2 h-5 w-5 text-capone-red" />
+                  Dimanche : Fermé
+                </p>
+              </>
+            )}
           </div>
         </div>
 
