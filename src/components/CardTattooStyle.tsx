@@ -22,7 +22,7 @@ const CardTattooStyle: React.FC<CardTattooStyleProps> = ({ title, description, i
         onContextMenu={(e) => e.preventDefault()}
       />
       <div className="p-6">
-        <h3 className="title text-2xl font-semibold text-capone-red mb-3">{title}</h3>
+        <h3 className="gothic-title title text-2xl font-semibold text-capone-red mb-3">{title}</h3>
         <p className="text-body text-capone-white text-lg leading-relaxed">{description}</p>
       </div>
     </div>

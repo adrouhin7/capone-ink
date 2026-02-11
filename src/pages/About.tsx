@@ -84,7 +84,7 @@ const About: React.FC = () => {
 
         {/* Artist Presentation */}
         <section className="mb-16 max-w-4xl mx-auto bg-capone-grey rounded-xl p-8 shadow-xl">
-          <h3 className="title text-3xl font-bold text-capone-red mb-6 text-center">Notre Artiste</h3>
+          <h3 className="gothic-title title text-3xl font-bold text-capone-red mb-6 text-center">Notre Artiste</h3>
           <div className="flex flex-col md:flex-row items-center md:space-x-8">
             <img
               src={artistPhotoUrl}
@@ -109,7 +109,7 @@ const About: React.FC = () => {
         <section className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           <div className="bg-capone-grey rounded-xl p-8 shadow-xl flex flex-col items-center text-center">
             <HeartHandshake className="h-16 w-16 text-capone-red mb-6" />
-            <h3 className="title text-3xl font-bold text-capone-red mb-4">Notre Philosophie</h3>
+            <h3 className="gothic-title title text-3xl font-bold text-capone-red mb-4">Notre Philosophie</h3>
             <p className="text-body text-capone-white text-lg leading-relaxed">
               Chez Capone’Ink, nous croyons que le tatouage est une forme d'expression personnelle profonde. Nous nous engageons à écouter attentivement vos idées, à vous conseiller avec expertise et à créer une œuvre qui vous ressemble, dans le respect de votre vision et de votre corps.
             </p>
@@ -125,7 +125,7 @@ const About: React.FC = () => {
 
         {/* Location & Hours */}
         <section className="max-w-4xl mx-auto bg-capone-grey rounded-xl p-8 shadow-xl">
-          <h3 className="title text-3xl font-bold text-capone-red mb-6 text-center">Où nous trouver & Horaires</h3>
+          <h3 className="gothic-title title text-3xl font-bold text-capone-red mb-6 text-center">Où nous trouver & Horaires</h3>
           <div className="flex flex-col md:flex-row justify-around items-center md:items-start space-y-8 md:space-y-0">
             <div className="text-center md:text-left flex flex-col items-center md:items-start">
               <MapPin className="h-12 w-12 text-capone-red mb-4" />

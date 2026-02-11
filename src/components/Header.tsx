@@ -19,7 +19,7 @@ const Header: React.FC = () => {
   return (
     <header className="bg-capone-black text-capone-white p-4 shadow-lg sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-3xl font-extrabold text-capone-red tracking-wider">
+        <Link to="/" className="gothic-logo text-capone-red tracking-wider">
           Capone’Ink
         </Link>
 
@@ -48,7 +48,7 @@ const Header: React.FC = () => {
             </SheetTrigger>
             <SheetContent side="right" className="bg-capone-black text-capone-white border-capone-grey w-3/4 sm:max-w-xs">
               <div className="flex flex-col items-start space-y-6 pt-8">
-                <Link to="/" className="text-3xl font-extrabold text-capone-red tracking-wider mb-4" onClick={() => setIsOpen(false)}>
+                <Link to="/" className="gothic-logo text-capone-red tracking-wider mb-4" onClick={() => setIsOpen(false)}>
                   Capone’Ink
                 </Link>
                 {navLinks.map((link) => (

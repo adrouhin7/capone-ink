@@ -243,7 +243,7 @@ const Home: React.FC = () => {
               alt="Capone'Ink Tattoo Logo"
               className="absolute top-0 right-4 w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-capone-red shadow-lg"
             />
-            <h1 className="title ink-title text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-capone-white drop-shadow-lg animate-fade-in">
+            <h1 className="gothic-logo gothic-title title ink-title text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-capone-white drop-shadow-lg animate-fade-in">
               Capone'Ink Tattoo
             </h1>
             <p className="text-body text-xl md:text-2xl text-capone-white mb-10 animate-fade-in delay-200">
@@ -316,7 +316,7 @@ const Home: React.FC = () => {
 
           {/* Artist Presentation */}
           <div className="mb-16 max-w-4xl mx-auto bg-capone-grey rounded-xl p-8 shadow-xl">
-            <h3 className="title text-3xl font-bold text-capone-red mb-6 text-center">Notre Artiste</h3>
+            <h3 className="gothic-title title text-3xl font-bold text-capone-red mb-6 text-center">Notre Artiste</h3>
             <div className="flex flex-col md:flex-row items-center md:space-x-8">
               <img
                 src={artistPhotoUrl}
@@ -341,7 +341,7 @@ const Home: React.FC = () => {
           <div className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <div className="bg-capone-grey rounded-xl p-8 shadow-xl flex flex-col items-center text-center">
               <HeartHandshake className="h-16 w-16 text-capone-red mb-6" />
-              <h3 className="title text-3xl font-bold text-capone-red mb-4">Notre Philosophie</h3>
+              <h3 className="gothic-title title text-3xl font-bold text-capone-red mb-4">Notre Philosophie</h3>
               <p className="text-body text-capone-white text-lg leading-relaxed">
                 Chez Capone'Ink, nous croyons que le tatouage est une forme d'expression personnelle profonde. Nous nous engageons à écouter attentivement vos idées, à vous conseiller avec expertise et à créer une œuvre qui vous ressemble, dans le respect de votre vision et de votre corps.
               </p>
@@ -357,7 +357,7 @@ const Home: React.FC = () => {
 
           {/* Location & Hours */}
           <div className="max-w-4xl mx-auto bg-capone-grey rounded-xl p-8 shadow-xl">
-            <h3 className="title text-3xl font-bold text-capone-red mb-6 text-center">Où nous trouver & Horaires</h3>
+            <h3 className="gothic-title title text-3xl font-bold text-capone-red mb-6 text-center">Où nous trouver & Horaires</h3>
             <div className="flex flex-col md:flex-row justify-around items-center md:items-start space-y-8 md:space-y-0">
               <div className="text-center md:text-left flex flex-col items-center md:items-start">
                 <MapPin className="h-12 w-12 text-capone-red mb-4" />
