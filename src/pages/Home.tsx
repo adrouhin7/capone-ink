@@ -243,7 +243,7 @@ const Home: React.FC = () => {
               alt="Capone'Ink Tattoo Logo"
               className="absolute top-0 right-4 w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-capone-red shadow-lg"
             />
-            <h1 className="hero-title text-gradient-ink arc-title ink-title animate-fade-in">
+            <h1 className="hero-title text-gradient-ink arc-title ink-title mb-6 animate-fade-in">
               Capone'Ink Tattoo
             </h1>
             <p className="text-body text-xl md:text-2xl text-capone-white mb-10 animate-fade-in delay-200">
