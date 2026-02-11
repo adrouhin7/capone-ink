@@ -45,6 +45,27 @@ html {
   letter-spacing: 2px;
 }
 
+/* Hero title - dégradé blanc→rouge + effet arc */
+.text-gradient-ink {
+  background: linear-gradient(90deg, #ffffff 0%, #C41E3A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.arc-title {
+  display: inline-block;
+  transform: rotate(-2deg);
+  transform-origin: center;
+}
+
+.hero-title {
+  font-family: 'Pirata One', serif !important;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
