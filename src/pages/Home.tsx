@@ -243,10 +243,10 @@ const Home: React.FC = () => {
               alt="Capone'Ink Tattoo Logo"
               className="absolute top-0 right-4 w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-capone-red shadow-lg"
             />
-            <h1 className="ink-title text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-capone-white drop-shadow-lg animate-fade-in">
+            <h1 className="title ink-title text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-capone-white drop-shadow-lg animate-fade-in">
               Capone'Ink Tattoo
             </h1>
-            <p className="text-xl md:text-2xl text-capone-white mb-10 animate-fade-in delay-200">
+            <p className="text-body text-xl md:text-2xl text-capone-white mb-10 animate-fade-in delay-200">
               L'art du tatouage, une encre, une histoire.
             </p>
             <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 animate-fade-in delay-400">
@@ -263,7 +263,7 @@ const Home: React.FC = () => {
         {/* Shop Presentation Section */}
         <div className="container mx-auto py-16 px-4">
           <SectionTitle>Bienvenue chez Capone'Ink</SectionTitle>
-          <div className="max-w-3xl mx-auto text-center text-lg md:text-xl leading-relaxed text-capone-white">
+          <div className="text-body max-w-3xl mx-auto text-center text-lg md:text-xl leading-relaxed text-capone-white">
             <p className="mb-6">
               Situé à Rougemont, Capone'Ink Tattoo est un studio dédié à l'art corporel, où chaque tatouage est une œuvre unique, pensée et réalisée avec passion. Nous mettons un point d'honneur à créer des pièces qui racontent votre histoire, dans un environnement sûr et inspirant.
             </p>
@@ -293,7 +293,7 @@ const Home: React.FC = () => {
       <section id="galerie" className="min-h-screen bg-capone-black py-16">
         <div className="container mx-auto px-4">
           <SectionTitle>Notre Galerie</SectionTitle>
-          <p className="text-center text-lg md:text-xl text-capone-white mb-12 max-w-3xl mx-auto">
+          <p className="text-body text-center text-lg md:text-xl text-capone-white mb-12 max-w-3xl mx-auto">
             Découvrez un aperçu de nos réalisations. Chaque pièce est unique et reflète la personnalité de nos clients.
           </p>
           {galleryLoading ? (
@@ -316,14 +316,14 @@ const Home: React.FC = () => {
 
           {/* Artist Presentation */}
           <div className="mb-16 max-w-4xl mx-auto bg-capone-grey rounded-xl p-8 shadow-xl">
-            <h3 className="text-3xl font-bold text-capone-red mb-6 text-center">Notre Artiste</h3>
+            <h3 className="title text-3xl font-bold text-capone-red mb-6 text-center">Notre Artiste</h3>
             <div className="flex flex-col md:flex-row items-center md:space-x-8">
               <img
                 src={artistPhotoUrl}
                 alt="Portrait de l'artiste tatoueur"
                 className="w-48 h-48 rounded-full object-cover mb-6 md:mb-0 border-4 border-capone-red shadow-lg"
               />
-              <div className="text-center md:text-left">
+              <div className="text-body text-center md:text-left">
                 <p className="text-capone-white text-lg leading-relaxed mb-4">
                   Derrière Capone'Ink se trouve Kewin, un tatoueur passionné depuis de nombreuses années. Pour lui, le tatouage n'est pas un travail mais une véritable passion. Spécialisé dans le noir et gris et maîtrisant une large variété de styles définis, il est capable de réaliser aussi bien des pièces détaillées que des créations old school jusqu'au réalisme.
                 </p>
@@ -341,15 +341,15 @@ const Home: React.FC = () => {
           <div className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <div className="bg-capone-grey rounded-xl p-8 shadow-xl flex flex-col items-center text-center">
               <HeartHandshake className="h-16 w-16 text-capone-red mb-6" />
-              <h3 className="text-3xl font-bold text-capone-red mb-4">Notre Philosophie</h3>
-              <p className="text-capone-white text-lg leading-relaxed">
+              <h3 className="title text-3xl font-bold text-capone-red mb-4">Notre Philosophie</h3>
+              <p className="text-body text-capone-white text-lg leading-relaxed">
                 Chez Capone'Ink, nous croyons que le tatouage est une forme d'expression personnelle profonde. Nous nous engageons à écouter attentivement vos idées, à vous conseiller avec expertise et à créer une œuvre qui vous ressemble, dans le respect de votre vision et de votre corps.
               </p>
             </div>
             <div className="bg-capone-grey rounded-xl p-8 shadow-xl flex flex-col items-center text-center">
               <ShieldCheck className="h-16 w-16 text-capone-red mb-6" />
-              <h3 className="text-3xl font-bold text-capone-red mb-4">Hygiène et Sécurité</h3>
-              <p className="text-capone-white text-lg leading-relaxed">
+              <h3 className="title text-3xl font-bold text-capone-red mb-4">Hygiène et Sécurité</h3>
+              <p className="text-body text-capone-white text-lg leading-relaxed">
                 Votre sécurité est notre priorité absolue. Nous respectons scrupuleusement toutes les normes d'hygiène et de salubrité en vigueur. Tout le matériel est à usage unique et stérile, et notre espace de travail est désinfecté après chaque client.
               </p>
             </div>
@@ -357,7 +357,7 @@ const Home: React.FC = () => {
 
           {/* Location & Hours */}
           <div className="max-w-4xl mx-auto bg-capone-grey rounded-xl p-8 shadow-xl">
-            <h3 className="text-3xl font-bold text-capone-red mb-6 text-center">Où nous trouver & Horaires</h3>
+            <h3 className="title text-3xl font-bold text-capone-red mb-6 text-center">Où nous trouver & Horaires</h3>
             <div className="flex flex-col md:flex-row justify-around items-center md:items-start space-y-8 md:space-y-0">
               <div className="text-center md:text-left flex flex-col items-center md:items-start">
                 <MapPin className="h-12 w-12 text-capone-red mb-4" />
@@ -395,7 +395,7 @@ const Home: React.FC = () => {
       <section id="contact" className="min-h-screen py-16">
         <div className="container mx-auto px-4">
           <SectionTitle>Contact & Demande de Devis</SectionTitle>
-          <p className="text-center text-lg md:text-xl text-capone-white mb-12 max-w-3xl mx-auto">
+          <p className="text-body text-center text-lg md:text-xl text-capone-white mb-12 max-w-3xl mx-auto">
             Vous avez une idée de tatouage ? Remplissez le formulaire ci-dessous pour nous décrire votre projet. Nous vous recontacterons rapidement pour discuter des détails et établir un devis personnalisé.
           </p>
           <ContactForm />
@@ -407,7 +407,7 @@ const Home: React.FC = () => {
       <section id="barber-gang" className="min-h-screen bg-capone-black py-16">
         <div className="container mx-auto px-4">
           <SectionTitle>Barber gang By NaNa</SectionTitle>
-          <p className="text-center text-lg md:text-xl text-capone-white mb-12 max-w-3xl mx-auto">
+          <p className="text-body text-center text-lg md:text-xl text-capone-white mb-12 max-w-3xl mx-auto">
             Retrouvez aussi notre barber présente au shop Capone'Ink. Coiffure, rasage et entretien avec passion et professionnalisme.
           </p>
           {barberImages.length === 0 ? (

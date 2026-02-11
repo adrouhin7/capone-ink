@@ -55,7 +55,7 @@ const Gallery: React.FC = () => {
     <div className="bg-capone-black min-h-screen text-capone-white py-16">
       <div className="container mx-auto px-4">
         <SectionTitle>Notre Galerie</SectionTitle>
-        <p className="text-center text-lg md:text-xl text-capone-white mb-12 max-w-3xl mx-auto">
+        <p className="text-body text-center text-lg md:text-xl text-capone-white mb-12 max-w-3xl mx-auto">
           Découvrez un aperçu de nos réalisations. Chaque pièce est unique et reflète la personnalité de nos clients.
         </p>
         {images.length === 0 ? (

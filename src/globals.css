@@ -2,16 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Polices Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=UnifrakturCook:wght@700&family=Cormorant+Garamond:wght@400;500;700&display=swap');
+
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
 }
 
-/* Google Fonts - Cormorant Garamond for headings */
-h1,
-h2,
-h3 {
-  font-family: 'Cormorant Garamond', serif;
+/* Variables typographiques */
+:root {
+  --font-cinzel: 'Cinzel Decorative', serif;
+  --font-fraktur: 'UnifrakturCook', serif;
+  --font-cormorant: 'Cormorant Garamond', serif;
+}
+
+/* Classes typographiques */
+.title {
+  font-family: var(--font-cinzel);
+  font-weight: 700;
+}
+
+.subtitle {
+  font-family: var(--font-fraktur);
+  font-weight: 700;
+}
+
+.text-body {
+  font-family: var(--font-cormorant);
+  font-weight: 400;
 }
 
 @layer base {
